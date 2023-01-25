@@ -1,9 +1,6 @@
-FROM ubuntu:16.04
-
-RUN apt-get -y update && apt-get -y install ca-certificates
-
-RUN mkdir -p /opt
-COPY typesense-server /opt
-RUN chmod +x /opt/typesense-server
-EXPOSE 8108
-ENTRYPOINT ["/opt/typesense-server"]
+FROM typesense/typesense:0.21.0
+ENV TYPESENSE_DATA_DIR “/tmp/ts”
+ENV TYPESENSE_API_KEY “”
+ENV TYPESENSE_API_PORT “8080”
+CMD ["–enable-cors"]
+RUN mkdir -p /tmp/ts
